@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+ln -snf "$(basename "$destination_dir")" "$(dirname "$destination_dir")/latest"
+SLACK_WEBHOOK_URL="{{ ccollect_slack_webhook_url }}"
+if [ -n "$SLACK_WEBHOOK_URL" ]; then
+    echo "ccollect finish: $name to $destination_dir" | jq -Rs '{"text":.}' | curl -sS -X POST -H 'Content-type: application/json' -d @- "$SLACK_WEBHOOK_URL"
+    echo
+fi

@@ -1,0 +1,16 @@
+---
+- name: "Create CCOLLECT_CONF/defaults/intervals"
+  file:
+    path: "{{ ccollect_conf }}/defaults/intervals"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+- name: "Create CCOLLECT_CONF/defaults/intervals/*"
+  copy:
+    content: "{{ item.value }}\n"
+    dest: "{{ ccollect_conf }}/defaults/intervals/{{ item.name }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items: "{{ ccollect_intervals }}"

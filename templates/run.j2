@@ -1,0 +1,20 @@
+#!/bin/bash
+set -euo pipefail
+: ${CCOLLECT_CONF:={{ ccollect_conf }}}
+export CCOLLECT_CONF
+mkdir -pv $(cat "$CCOLLECT_CONF"/sources/*/destination)
+if [ -z "${1:-}" ]; then
+    ALL="-a"
+else
+    ALL=
+fi
+if [ -z "${INTERVALS:-}" ]; then
+    INTERVALS=daily
+    if [ 7 = "$(date +%u)" ]; then
+	INTERVALS=weekly
+    fi
+    if [ 01 = "$(date +%d)" ]; then
+	INTERVALS=monthly
+    fi
+fi
+/srv/ccollect/ccollect-{{ ccollect_version }}/ccollect $ALL "$INTERVALS" "$@"

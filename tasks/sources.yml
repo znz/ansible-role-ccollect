@@ -1,0 +1,79 @@
+---
+- name: "Create CCOLLECT_CONF/sources/NAME"
+  file:
+    path: "{{ ccollect_conf }}/sources/{{ item.name }}"
+    state: directory
+    owner: root
+    group: "{{ ccollect_runner_group }}"
+    mode: 0750
+  with_items: "{{ ccollect_sources }}"
+- name: "Create CCOLLECT_CONF/sources/NAME/source"
+  copy:
+    content: "{{ item.source }}\n"
+    dest: "{{ ccollect_conf }}/sources/{{ item.name }}/source"
+    owner: root
+    group: "{{ ccollect_runner_group }}"
+    mode: 0640
+  with_items: "{{ ccollect_sources }}"
+- name: "Create CCOLLECT_CONF/sources/NAME/destination"
+  copy:
+    content: "{{ item.destination }}\n"
+    dest: "{{ ccollect_conf }}/sources/{{ item.name }}/destination"
+    owner: root
+    group: "{{ ccollect_runner_group }}"
+    mode: 0640
+  with_items: "{{ ccollect_sources }}"
+- name: "Create CCOLLECT_CONF/sources/NAME/pre_exec"
+  template:
+    src: pre_exec.j2
+    dest: "{{ ccollect_conf }}/sources/{{ item.name }}/pre_exec"
+    owner: root
+    group: "{{ ccollect_runner_group }}"
+    mode: 0750
+  when: "'pre_exec' in item"
+  with_items: "{{ ccollect_sources }}"
+- name: "Create CCOLLECT_CONF/sources/NAME/post_exec"
+  template:
+    src: post_exec.j2
+    dest: "{{ ccollect_conf }}/sources/{{ item.name }}/post_exec"
+    owner: root
+    group: "{{ ccollect_runner_group }}"
+    mode: 0750
+  when: "'post_exec' in item"
+  with_items: "{{ ccollect_sources }}"
+- name: "Create CCOLLECT_CONF/sources/NAME/delete_incomplete"
+  copy:
+    content: ""
+    dest: "{{ ccollect_conf }}/sources/{{ item.name }}/delete_incomplete"
+    owner: root
+    group: "{{ ccollect_runner_group }}"
+    mode: 0640
+  when: "'delete_incomplete' in item"
+  with_items: "{{ ccollect_sources }}"
+- name: "Create CCOLLECT_CONF/sources/NAME/exclude"
+  copy:
+    content: "{{ item.exclude }}\n"
+    dest: "{{ ccollect_conf }}/sources/{{ item.name }}/exclude"
+    owner: root
+    group: "{{ ccollect_runner_group }}"
+    mode: 0640
+  when: "'exclude' in item"
+  with_items: "{{ ccollect_sources }}"
+- name: "Create CCOLLECT_CONF/sources/NAME/rsync_options"
+  copy:
+    content: "{{ item.rsync_options }}"
+    dest: "{{ ccollect_conf }}/sources/{{ item.name }}/rsync_options"
+    owner: root
+    group: "{{ ccollect_runner_group }}"
+    mode: 0640
+  when: "'rsync_options' in item"
+  with_items: "{{ ccollect_sources }}"
+- name: "Create CCOLLECT_CONF/sources/NAME/summary"
+  copy:
+    content: ""
+    dest: "{{ ccollect_conf }}/sources/{{ item.name }}/summary"
+    owner: root
+    group: "{{ ccollect_runner_group }}"
+    mode: 0640
+  when: "'summary' in item"
+  with_items: "{{ ccollect_sources }}"

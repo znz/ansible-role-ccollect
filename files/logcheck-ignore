@@ -1,0 +1,25 @@
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect-run\[[[:digit:]]+\]: \[[^][]+\] (Literal|Matched) data:
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect-run\[[[:digit:]]+\]: \[[^][]+\] --- .* ping
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect-run\[[[:digit:]]+\]: \[[^][]+\] .* 0% packet loss
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect-run\[[[:digit:]]+\]: \[[^][]+\] File list
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect-run\[[[:digit:]]+\]: \[[^][]+\] Number of (created |deleted |regular )?files
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect-run\[[[:digit:]]+\]: \[[^][]+\] PING
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect-run\[[[:digit:]]+\]: \[[^][]+\] Total (transferred )?file size:
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect-run\[[[:digit:]]+\]: \[[^][]+\] Total bytes (sent|received):
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect-run\[[[:digit:]]+\]: \[[^][]+\] [Tt]otal size is
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect-run\[[[:digit:]]+\]: \[[^][]+\] ok$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect-run\[[[:digit:]]+\]: \[[^][]+\] rtt min/avg/max/mdev =
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect-run\[[[:digit:]]+\]: \[[^][]+\] sent .* bytes  received .* bytes .* bytes/sec$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect-run\[[[:digit:]]+\]: \[[^][]+\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect: Backup lasted:
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect: Beginning to backup$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect: Executing .*/(pre|post)_exec \.\.\.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect: Existing backups:
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect: Finished .*post_exec\.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect: Finished .*pre_exec \(return code 0\)\.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect: Finished backup \(rsync return code: 0\)\.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect: Finished$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect: Hard linking from
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect: Removing
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect: Transferring files\.\.\.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ccollect: ccollect [0-9.]+: Beginning backup using interval

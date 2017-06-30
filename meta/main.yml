@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Kazuhiro NISHIYAMA
+  description: Setup ccollect
+  license: MIT
+  min_ansible_version: 2.2
+
+  platforms:
+  - name: Ubuntu
+  - name: Debian
+
+  galaxy_tags:
+  - system
+  - backup
+
+dependencies: []

@@ -1,0 +1,18 @@
+---
+- name: "Create /srv/ccollect"
+  file:
+    path: "/srv/ccollect"
+    state: directory
+    owner: root
+    group: "{{ ccollect_runner_group }}"
+    mode: 0750
+- name: "Download ccollect tarball"
+  get_url:
+    url: "http://www.nico.schottelius.org/software/ccollect/download/ccollect-{{ ccollect_version }}.tar.bz2"
+    dest: "/srv/ccollect/ccollect-{{ ccollect_version }}.tar.bz2"
+    checksum: "{{ ccollect_checksum }}"
+- name: "Extract ccollect tarball"
+  unarchive:
+    src: "/srv/ccollect/ccollect-{{ ccollect_version }}.tar.bz2"
+    remote_src: yes
+    dest: "/srv/ccollect"

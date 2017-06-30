@@ -1,0 +1,13 @@
+[Unit]
+Description=ccollect {{ ccollect_conf }}
+
+[Service]
+Type=oneshot
+Environment=CCOLLECT_CONF={{ ccollect_conf }}
+ExecStart=/srv/ccollect/ccollect-run
+User={{ ccollect_runner_user }}
+Group={{ ccollect_runner_group }}
+Nice=19
+OOMScoreAdjust=900
+IOSchedulingClass=2
+IOSchedulingPriority=7

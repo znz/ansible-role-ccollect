@@ -1,0 +1,8 @@
+---
+- name: "Copy logcheck ignore"
+  copy:
+    src: logcheck-ignore
+    dest: /etc/logcheck/ignore.d.server/local-ccollect
+    owner: root
+    group: logcheck
+    mode: 0644

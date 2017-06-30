@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+cur_conf_dir="$CCOLLECT_CONF/sources/$name"
+SRC_HOST=`cat "$cur_conf_dir/source" | cut -d"@" -f2 | cut -d":" -f1`
+ping -c1 -q "$SRC_HOST" || exit $?
+SLACK_WEBHOOK_URL="{{ ccollect_slack_webhook_url }}"
+if [ -n "$SLACK_WEBHOOK_URL" ]; then
+    echo "ccollect start: $name" | jq -Rs '{"text":.}' | curl -sS -X POST -H 'Content-type: application/json' -d @- "$SLACK_WEBHOOK_URL"
+    echo
+fi

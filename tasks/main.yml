@@ -1,0 +1,8 @@
+---
+# tasks file for ansible-role-ccollect
+- include: install.yml
+- include: dir.yml
+- include: defaults.yml
+- include: sources.yml
+- include: timer.yml
+- include: logcheck.yml

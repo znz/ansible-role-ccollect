@@ -1,0 +1,31 @@
+---
+- name: "Create CCOLLECT_CONF"
+  file:
+    path: "{{ ccollect_conf }}"
+    state: directory
+    owner: root
+    group: "{{ ccollect_runner_group }}" # for lock file
+    mode: 0770
+- name: "Create CCOLLECT_CONF/defaults"
+  file:
+    path: "{{ ccollect_conf }}/defaults"
+    state: directory
+    owner: root
+    group: "{{ ccollect_runner_group }}"
+    mode: 0750
+- name: "Create CCOLLECT_CONF/sources"
+  file:
+    path: "{{ ccollect_conf }}/sources"
+    state: directory
+    owner: root
+    group: "{{ ccollect_runner_group }}"
+    mode: 0750
+
+- name: "Create ccollect destination"
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ ccollect_runner_user }}"
+    group: "{{ ccollect_runner_group }}"
+    mode: 0750
+  with_items: "{{ ccollect_destinations }}"

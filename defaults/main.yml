@@ -1,0 +1,36 @@
+---
+# defaults file for ansible-role-ccollect
+ccollect_version: "2.1"
+ccollect_checksum: "sha256:cfd5735d3c982a4b19f4ecff4472f29f63ce89e820a47102b76c5cddae21ee50"
+ccollect_conf_name: "myservice"
+ccollect_conf: "/srv/ccollect/myservice-conf"
+ccollect_runner_user: "vagrant"
+ccollect_runner_group: "vagrant"
+ccollect_intervals:
+- { name: "daily",   value: 10 }
+- { name: "monthly", value: 24 }
+- { name: "weekly",  value: 5 }
+ccollect_sources:
+- name: "myservice.example.jp"
+  source: "myservice.example.jp:/"
+  destination: "/srv/ccollect/destination/myservice.example.jp/root"
+  pre_exec: yes
+  post_exec: yes
+  rsync_options: "--one-file-system"
+  delete_incomplete: yes
+  summary: yes
+- name: "myservice.example.jp"
+  source: "myservice.example.jp:/boot"
+  destination: "/srv/ccollect/destination/myservice.example.jp/boot"
+  pre_exec: yes
+  post_exec: yes
+  rsync_options: "--one-file-system"
+  delete_incomplete: yes
+  summary: yes
+ccollect_destinations:
+- /srv/ccollect/destination
+- /srv/ccollect/destination/myservice.example.jp
+ccollect_packages:
+- jq   # for slack webhook
+- curl # for slack webhook
+ccollect_slack_webhook_url: "https://hooks.slack.com/services/XXXXXX/XXXXXXXX/XXXXXXXXXXXXXXX"
