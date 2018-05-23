@@ -77,3 +77,23 @@
     mode: 0640
   when: "'summary' in item"
   with_items: "{{ ccollect_sources }}"
+- name: "Create CCOLLECT_CONF/sources/NAME/intervals"
+  file:
+    path: "{{ ccollect_conf }}/sources/{{ item.name }}/intervals"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  when: "'intervals' in item"
+  with_items: "{{ ccollect_sources }}"
+- name: "Create CCOLLECT_CONF/sources/NAME/intervals/*"
+  copy:
+    content: "{{ item.1.value }}\n"
+    dest: "{{ ccollect_conf }}/sources/{{ item.0.name }}/intervals/{{ item.1.name }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_subelements:
+  - "{{ ccollect_sources }}"
+  - "intervals"
+  - skip_missing: yes
